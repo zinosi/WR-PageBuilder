@@ -30,6 +30,28 @@ var initContentEditor;
 
     $(document).ready(function () {
         $.WR_Text();
+        var  init1;
+
+        /***TEMP FIX VERSION 4.3 by Vik***/
+       jQuery('body').on('click','#param-text-html',function(){  return false; });
+       jQuery('body').on('click','#param-text-tmce',function(){  return false; });
+
+       jQuery('body').on('click','#param-text-html',function()
+       {  
+                tinymce.remove(tinymce.get('param-text'));
+                jQuery(this).closest('#wp-param-text-wrap').addClass('html-active');
+                jQuery(this).closest('#wp-param-text-wrap').removeClass('tmce-active');
+        });
+       jQuery('body').on('click','#param-text-tmce',function(){   
+
+        init1 = tinyMCEPreInit.mceInit['param-text'];
+        tinymce.init( init1 );
+
+        jQuery(this).closest('#wp-param-text-wrap').removeClass('html-active');
+                jQuery(this).closest('#wp-param-text-wrap').addClass('tmce-active');
+        });
+
+     /** END TEMP FIX **/
 
         // Fix conflict script when create new tinymce editor
         $('#content-html').click();
